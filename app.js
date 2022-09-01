@@ -19,19 +19,16 @@ app.use(morgan('dev'));
 
 // Info GET endpoint
 app.get('/info', (req, res, next) => {
-    res.send('This is a proxy service which proxies to JSONPlaceholder API.');
+    res.send('This is a proxy service which proxies to our UTSA Faculty Insights API.');
 });
 
+// TODO: make more restrictive as we get closer to website launch
 app.use(cors({ origin: '*' }));
 
 // Authorization
 app.use('', (req, res, next) => {
+    // YAGNI
     next();
-    // if (req.headers.authorization) {
-    //     next();
-    // } else {
-    //     res.sendStatus(403);
-    // }
 });
 
 // Proxy endpoints
@@ -47,7 +44,3 @@ app.use('/api', createProxyMiddleware({
 }));
 
 module.exports = app;
-// // Start Proxy
-// app.listen(PORT, HOST, () => {
-//     console.log(`Starting Proxy at ${HOST}:${PORT}`);
-// });
