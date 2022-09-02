@@ -26,10 +26,9 @@ app.get('/info', (req, res, next) => {
 app.use(cors({ origin: '*' }));
 
 // Authorization
-app.use('', (req, res, next) => {
-    // YAGNI
-    next();
-});
+// app.use('', (req, res, next) => {
+//     next();
+// });
 
 // Proxy endpoints
 app.use('/api', createProxyMiddleware({
