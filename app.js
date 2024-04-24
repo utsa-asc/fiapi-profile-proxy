@@ -13,6 +13,7 @@ const app = express();
 // const PORT = process.env.PORT;
 // const HOST = "localhost";
 const API_SERVICE_URL = "https://fiapi.academicanalytics.com/api";
+const PIXEL_SERVICE_URL = "https://connect.facebook.net";
 
 // Logging
 app.use(morgan('dev'));
@@ -39,6 +40,14 @@ app.use('/api', createProxyMiddleware({
     },
     pathRewrite: {
         [`^/api`]: '',
+    },
+}));
+
+app.use('/pixel', createProxyMiddleware({
+    target: PIXEL_SERVICE_URL,
+    changeOrigin: true,
+    pathRewrite: {
+        [`^/pixel`]: '',
     },
 }));
 
